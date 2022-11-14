@@ -1,0 +1,5 @@
+Ducks Redux Architectural Pattern -> organize by features:
+
+/components - shared components across multiple pages
+/scenes - set up layout of the components
+/state - redux toolkit persistence of state

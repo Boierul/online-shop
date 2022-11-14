@@ -1,5 +1,11 @@
 import {useEffect} from "react";
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom";
+import Home from "./scenes/home/Home";
+import ItemDetails from "./scenes/itemdetails/ItemDetails";
+import Checkout from "./scenes/checkout/Checkout";
+import CheckoutConfirmation from "./scenes/checkout/CheckoutConfirmation";
+import Navbar from "./scenes/global/Navbar";
+import Footer from "./scenes/global/Footer";
 
 /* Will prevent scrolling positioning in a new page */
 const ScrollToTop = () => {
@@ -17,14 +23,15 @@ function App() {
     return (
         <div className="app">
             <BrowserRouter>
+                <Navbar/>
                 <ScrollToTop/>
                 <Routes>
-                    {/*<Route path="/" element={<Home />} />*/}
-                    {/*<Route path="item/:itemId" element={<ItemDetails />} />*/}
-                    {/*<Route path="checkout" element={<Checkout />} />*/}
-                    {/*<Route path="checkout/success" element={<Confirmation />} />*/}
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="item/:itemId" element={<ItemDetails/>}/>
+                    <Route path="checkout" element={<Checkout/>}/>
+                    <Route path="checkout/success" element={<CheckoutConfirmation/>}/>
                 </Routes>
-                <h1>APP</h1>
+                <Footer/>
             </BrowserRouter>
         </div>
     );
