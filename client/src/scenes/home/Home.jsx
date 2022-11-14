@@ -1,8 +1,11 @@
 import React from 'react';
+import MainCarousel from "./MainCarousel";
 
-function Home(props) {
+function Home() {
     return (
-        <div>Home</div>
+        <div className="home">
+            <MainCarousel />
+        </div>
     );
 }
 

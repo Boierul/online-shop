@@ -9,6 +9,8 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
+import logo from '../../assets/logo/logo.png'
+
 /* Theming */
 import {shades} from "../../theme";
 import {setIsCartOpen} from "../../state";
@@ -35,6 +37,7 @@ function Navbar() {
             top="0"
             left="0"
             zIndex="1"
+            borderRadius="0 0 4px 4px"
         >
             <Box
                 width="80%"
@@ -46,9 +49,14 @@ function Navbar() {
                 <Box
                     onClick={() => navigate("/")}
                     sx={{"&:hover": {cursor: "pointer"}}}
-                    color={shades.secondary[500]}
                 >
-                    E-SHOP
+                    <img alt="logo" src={logo} style={{
+                        width: "45px",
+                        height: "45px",
+                        padding: "0.5rem",
+                        borderRadius:"50%",
+                        marginTop:"0.5rem"
+                    }}/>
                 </Box>
 
                 <Box
