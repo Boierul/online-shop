@@ -6,6 +6,7 @@ import Checkout from "./scenes/checkout/Checkout";
 import CheckoutConfirmation from "./scenes/checkout/CheckoutConfirmation";
 import Navbar from "./scenes/global/Navbar";
 import Footer from "./scenes/global/Footer";
+import CartMenu from "./scenes/global/CartMenu";
 
 /* Will prevent scrolling positioning in a new page */
 const ScrollToTop = () => {
@@ -31,6 +32,7 @@ function App() {
                     <Route path="checkout" element={<Checkout/>}/>
                     <Route path="checkout/success" element={<CheckoutConfirmation/>}/>
                 </Routes>
+                <CartMenu />
                 <Footer/>
             </BrowserRouter>
         </div>

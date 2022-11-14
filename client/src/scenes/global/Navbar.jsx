@@ -15,7 +15,9 @@ import {setIsCartOpen} from "../../state";
 
 
 function Navbar() {
+    // Navigate to the specified dir
     const navigate = useNavigate();
+    // Will call a reducer action from the global state
     const dispatch = useDispatch();
     // Grabbing the cartSlice name 'name: "cart" ',from src/index.js
     // and accessing the cart object after
