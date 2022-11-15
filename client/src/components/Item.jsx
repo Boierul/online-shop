@@ -8,7 +8,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 
 import {shades} from "../theme";
 import {addToCart} from "../state";
-import './Item.css'
 
 // Props come from Strapi backend, thus this weird args
 const Item = ({item, width}) => {
@@ -67,7 +66,6 @@ const Item = ({item, width}) => {
                             display="flex"
                             alignItems="center"
                             backgroundColor={shades.neutral[100]}
-                            borderRadius="2rem"
                         >
                             {/* Makes sure that count doesn't go below 1 */}
                             <IconButton sx={{margin: "0.1rem 0.3rem"}}
@@ -75,7 +73,7 @@ const Item = ({item, width}) => {
                                 <RemoveIcon/>
                             </IconButton>
 
-                                 <Typography color={shades.primary[300]}>{count}</Typography>
+                            <Typography color={shades.primary[300]}>{count}</Typography>
 
                             <IconButton sx={{margin: "0.1rem 0.3rem"}}
                                         onClick={() => setCount(count + 1)}>
@@ -84,7 +82,15 @@ const Item = ({item, width}) => {
                         </Box>
 
                         <Button
-                            className="addButton"
+                            sx={{
+                                backgroundColor: "#150003",
+                                color: "white",
+                                padding: "0 1rem",
+                                borderRadius: 0,
+                                "&:hover": {
+                                    backgroundColor: "#be1212"
+                                }
+                            }}
                             onClick={() => {
                                 dispatch(addToCart({item: {...item, count}}));
                             }}
