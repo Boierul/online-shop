@@ -74,6 +74,7 @@ const ShoppingList = () => {
                 <Tab label="TOP RATED" value="topRated"/>
             </Tabs>
 
+            {/* Use grid when have a long list */}
             <Box
                 margin="0 auto"
                 display="grid"
