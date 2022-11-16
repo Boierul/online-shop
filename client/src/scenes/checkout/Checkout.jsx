@@ -51,6 +51,9 @@ function Checkout() {
     // STRIPE function to make a payment
     async function makePayment(values) {
         const stripe = await stripePromise
+
+        console.log("Stripe Promise: ")
+        console.log(stripe)
         const requestBody = {
             userName: [values.firstName, values.lastName].join(" "),
             email: values.email,
@@ -59,15 +62,26 @@ function Checkout() {
                 count
             }))
         }
+        console.log("Request Body: ")
+        console.log(requestBody)
+
         // Order model from backend (strapi)
         const request = await fetch("http://localhost:1337/api/orders", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(requestBody)
         })
+
+        console.log("Request: ")
+        console.log(request)
+
         // Will make the call to the server, will asynchronously fetch data
         const session = await request.json();
         // Redirection function to the STIPE API
+
+
+        console.log("Session: ")
+        console.log(session)
         await stripe.redirectToCheckout({
             sessionId: session.id,
         });
@@ -97,7 +111,7 @@ function Checkout() {
             zipCode: ""
         },
         email: "",
-        phoneNumber: ""
+        phoneNumber: "",
     }
 
     // Validation configuration

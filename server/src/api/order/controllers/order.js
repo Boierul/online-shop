@@ -17,6 +17,11 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
       // Grabbing the user info from params
       const {products, userName, email} = ctx.request.body;
 
+      let itemLog = {}
+      let sessionLog = {}
+      let testLog = {}
+      let sessionIDLog = {}
+
       try {
         // A list of the customer is buying
         // Retrieve item(s) information while also providing additional security via dynamic price backend fetch
@@ -24,6 +29,7 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
           products.map(async (product) => {
 
             const item = await strapi.service("api::item.item").findOne(product.id)
+            itemLog = item
 
             // Will return a formatted JSON
             return {
@@ -41,24 +47,35 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
 
         // Create a Stripe session
         const session = await stripe.checkout.sessions.create({
+          mode: "payment",
           payment_method_types: ["card"],
           customer_email: email,
-          mode: "payment",
+          line_items: lineItems,
           success_url: "http://localhost:3000/checkout/success",
           cancel_url: "http://localhost:3000",
-          line_items: lineItems
         })
 
         // Create the order in the Strapi backend
-        await strapi.service("api::order.order")
+        const test = await strapi.service("api::order.order")
           .create({data: {userName, products, stripeSessionId: session.id}});
+
+        // LOGS
+        sessionLog = session
+        testLog = test
+        sessionIDLog = session.id
+
 
         // Returns the Session id to the client
         return {id: session.id};
 
       } catch (error) {
         ctx.response.status = 500
-        return {error: {message: "There was a problem creating the charge"}}
+        return {error: {
+          message: "There was a problem creating the charge"},
+          sessionLog: sessionLog,
+          testLog: testLog,
+          sessionIDLog: sessionIDLog
+        }
       }
     }
   })

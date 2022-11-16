@@ -38,6 +38,19 @@ function Payment({ values, touched, errors, handleBlur, handleChange }) {
                    sx={{ gridColumn: "span 4" }}
                />
 
+               <TextField
+                   fullWidth
+                   type="text"
+                   label="User Name"
+                   onBlur={handleBlur}
+                   onChange={handleChange}
+                   value={values.userName}
+                   name="userName"
+                   error={!!touched.userName && !!errors.userName}
+                   helperText={touched.userName && errors.userName}
+                   sx={{ gridColumn: "span 4" }}
+               />
+
            </Box>
 
        </Box>
